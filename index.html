@@ -1,0 +1,288 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>2팀 x 썬텍 해커톤 주제 리서치 (전체 절차판)</title><style>:root{color-scheme:light dark;--bg:#fbfaf7;--sf:#f2f0ea;--ink:#1d1d1b;--mu:#5c5a55;--ru:#dcd8cf;--ac:#0f6b5c;--wn:#8a4b00;--wash:rgba(15,107,92,.08)}
+@media (prefers-color-scheme:dark){:root{--bg:#141513;--sf:#1d1f1c;--ink:#ecebe6;--mu:#a9a79f;--ru:#33352f;--ac:#5cc4ae;--wn:#f0b067;--wash:rgba(92,196,174,.12)}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;word-break:keep-all;overflow-wrap:break-word}
+main{max-width:72ch;margin:0 auto;padding:40px 20px 80px}
+h1{font-size:2rem;line-height:1.3;margin:0 0 12px}h2{font-size:1.5rem;margin:56px 0 14px;padding-top:18px;border-top:1px solid var(--ru)}h3{font-size:1.2rem;margin:36px 0 10px;color:var(--ac)}
+p,li{margin:.5em 0}a{color:var(--ac);text-underline-offset:3px}::selection{background:var(--ac);color:var(--bg)}
+strong{font-weight:700}code{font-size:.9em;background:var(--sf);padding:1px 5px;border-radius:4px}
+.summary{background:var(--wash);border-radius:12px;padding:6px 22px 14px;margin:24px 0}.summary h2{border-top:0;margin-top:14px;padding-top:0}
+.tw{overflow-x:auto;margin:16px 0;border:1px solid var(--ru);border-radius:8px}.tw:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+table{border-collapse:collapse;width:100%;font-size:.92em;font-variant-numeric:tabular-nums;min-width:520px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--ru)}th{background:var(--sf);font-weight:700}tr:last-child td{border-bottom:0}
+.tag{font-size:.8em;font-weight:700;color:var(--wn);white-space:nowrap}
+.fig{margin:24px 0;padding:16px;background:var(--sf);border-radius:10px}.fig svg{width:100%;height:auto;display:block}
+.fig figcaption{font-size:.88em;color:var(--mu);margin-top:8px}.b1{fill:var(--mu)}.b2{fill:var(--ac);opacity:.55}.b3{fill:var(--wn)}.ax{stroke:var(--ru)}
+.box{fill:var(--bg);stroke:var(--ru)}.ar{stroke:var(--ac);stroke-width:2;fill:none}
+.meta{color:var(--mu);font-size:.9em}
+@media (max-width:600px){body{font-size:16px}main{padding:24px 16px 60px}h1{font-size:1.6rem}h2{font-size:1.3rem}}</style></head><body><main><h1>2팀 x 썬텍 주제 리서치 전체판</h1>
+<p>작성 2026-11-06 · ulw-research 전체 절차(팀 8명 + 독립 관측 레인, 7절 참고 [S30], 교차 비판 2라운드, 클레임 그래프 게이트, 검증 스크립트) · 기획 문서야. 제품 코드는 한 줄도 안 짰어.</p>
+<p>확인 못 한 건 <strong><span class="tag">미확인</span></strong>, 내가 계산하거나 추론한 건 <strong><span class="tag">추론</span></strong> 으로 표시했어. 근거 번호 [S숫자]는 맨 아래 출처 목록과 맞춰 뒀어.</p>
+<section class="summary" aria-label="요약"><h2>요약</h2>
+<ul>
+<li><strong>결론: 1위는 그대로 A 트랙 에너지 + 태양광인데, 무게중심을 옮겼어.</strong> 1차 조사의 &quot;태양광 O&amp;M 점검 에이전트(사진 → 판정 → 우선순위 → 점검일지)&quot;는 운영진 교육자료 예시 문구와 똑같아서 그대로 내면 참신성이 없어 [S3]. 그래서 <strong>&quot;전기안전관리대행 태양광 월차 점검 보고 에이전트&quot;</strong> 로 바꿨어. 한 현장의 한 달 점검 사진 묶음을 넣으면 핫스팟 사진을 골라내고, 우리 규칙으로 우선순위를 매기고, 법정 점검기록표(직무고시 별지 제9호) 핫스팟 항목 판정과 의견 초안을 써 줘. 점검자가 확인·수정한 뒤 저장해.</li>
+<li><strong>왜 바꿨나.</strong> 썬텍의 공개 계약 13건은 전부 자가용 전기설비 안전관리대행이고 태양광 O&amp;M 계약은 안 보여 [S10]. 대신 별지 제9호 태양광 점검표에 &quot;적외선열화상 측정시 핫스팟&quot; 항목이 법으로 들어 있어 [S14]. 제공 데이터(태양광 열화상)와 썬텍 본업(대행 점검·기록)이 이 서식에서 만나.</li>
+<li><strong>1차 조사에서 틀렸던 것.</strong> 직원 18~22명은 틀렸고, 국민연금 기준으로는 약 12~13명이야 [S8][S9]. 제공 데이터의 태양광 심각도는 전부 3이라 &quot;심각도로 우선순위&quot;는 안 돼 [S5]. 남부발전의 &quot;정확도 80%&quot;는 풍력 수치야 [S21].</li>
+<li><strong>오늘 밤 할 일 둘.</strong> 썬텍 재직자에게 &quot;드론 열화상을 직접 하는지, 지금 점검기록을 어떻게 쓰는지&quot;를 물어봐. #해커톤-qna에는 &quot;공개 법령·고시를 지식베이스에 넣어도 되는지&quot;를 물어봐.</li>
+</ul>
+</section><h2>1. 썬텍은 뭐 하는 회사야</h2>
+<h3>신원 (확인됨)</h3>
+<ul>
+<li>주식회사 썬텍, 대표 박건일, 사업자번호 227-87-02206, 2021-07-29 설립, 등기 주소 전남 보성군 보성읍 송재로 172-1 201호 [S8][S9].</li>
+<li>중기부 벤처기업 명단에 <strong>혁신성장유형 벤처</strong>로 올라 있고 업종은 &quot;전기안전관리대행업, 사업시설유지·관리서비스&quot;야. 유효기간 2025-04-22~2028-04-21 [S11].</li>
+<li>나주 빛가람에 865-85-02042 &quot;주식회사 썬텍&quot;이 있는데 대표 이니셜과 설립일이 같아서 같은 법인의 지점으로 보여 <strong><span class="tag">추론, 등기 미확인</span></strong> [S10]. 발표와는 상관없으니 말할 필요 없어.</li>
+<li>이름이 같은 다른 회사가 많아. 광주 북구 썬텍(대표 선형택, 태양광 구조물 시공), 서울 금천 차량용 히터, 평택 기계설비, 드론 판매점 suntek-korea.com은 전부 다른 회사야. 특히 광주 썬텍의 &quot;태양광 전기공사 경력자 채용&quot; 공고를 우리 파트너 것으로 인용하면 안 돼 [S10][S11].</li>
+</ul>
+<h3>규모</h3>
+<ul>
+<li>국민연금 가입 직원 약 12~13명 [S8][S9]. 1차 조사의 18~22명은 kjebi의 &quot;18명&quot;에서 나온 걸로 보이고 근거가 약해.</li>
+<li>매출 2022년 약 5.1억 → 2023년 8.64억(영업이익 0.58억) → 2025년 약 10.26억 [S8][S9]. 작지만 꾸준히 크는 회사야.</li>
+<li>홈페이지, 뉴스, 특허, 현재 채용 공고는 못 찾았어 [S10]. RnDcircle의 &quot;IT를 접목한 전기 설비 안전 진단&quot; 문구는 로그인 벽 때문에 여전히 <strong><span class="tag">미확인</span></strong> 이라 발표에 인용하지 마.</li>
+</ul>
+<h3>무슨 일을 하나</h3>
+<ul>
+<li>최근 2년 공공계약 13건, 약 1.3억 원, 전부 수의계약 용역이야. 한국농어촌공사 전남 지사들의 양수장·득량지구 자가용 전기설비 안전관리대행, 보성국민체육센터, 곡성 하수처리장·체육관이 고객이고, &quot;전남 E-GUARD 전기설비 긴급점검용역&quot;도 땄어 [S10].</li>
+<li>공공계약은 매출의 일부라서 나머지는 민간(태양광 발전소, 수용가)일 가능성이 커 <strong><span class="tag">추론</span></strong>. 구인 사이트 키워드에 &quot;태양광유지보수&quot;가 있긴 해. 하지만 <strong>썬텍이 드론 열화상 점검을 직접 한다는 근거는 없어 <span class="tag">미확인</span></strong>.</li>
+</ul>
+<h3>보성의 태양광 (배경 자료)</h3>
+<ul>
+<li>보성군 공공데이터에 태양광 허가 1,563건, 376.7MW, 그중 100kW 이하가 71%야. 2018년이 허가 정점(449건)이야 [S12].</li>
+<li>2018년 조례로 &quot;5년 이상 거주한 군민의 100kW 이하 소규모&quot;만 허용했어 [S13]. 작고 흩어진 주민 소유 발전소가 많다는 뜻이고, 이런 곳이 전형적인 전기안전관리대행 고객이야 <strong><span class="tag">추론</span></strong>.</li>
+<li>이 데이터는 해커톤 외부 데이터라 결과물에는 넣으면 안 되고, 문제 정의 설명용 배경으로만 써.</li>
+</ul>
+<h3>페인 포인트 (근거 수준별)</h3>
+<ol>
+<li><strong>법정 점검기록 부담 (근거 강함).</strong> 전기안전관리자는 점검 결과를 기록하고 4년 보존해야 해 [S14][S15]. 기록에는 항목별 기준치·측정치·결과·의견이 들어가야 해 [S14]. 기록을 안 쓰거나 허위로 쓰면 과태료가 최대 300만 원이야 [S15]. 정부 실태조사에서 504곳 중 53.8%가 &quot;안전관리기록 작성 미비, 점검항목 일부 누락&quot;이었어 [S16]. 단, 취약 시설 표본이라 전체 비율은 아니야.</li>
+<li><strong>방문 점검 의무 (근거 강함).</strong> 용량에 따라 월 1~6회 직접 방문해야 하고, 태양광·ESS 같은 신재생은 월차 점검 때 별지 제9~14호 서식을 써 [S14].</li>
+<li><strong>1인당 담당량에 법정 한도가 있음 (근거 강함, 해석 주의).</strong> 기술인력 1명당 가중치 합계 78점 이하, 사무소 평균 60점 이하야 [S17]. 그래서 &quot;시간을 아끼면 현장을 더 받아서 돈이 된다&quot;는 논리는 안 통해. skeptic 지적을 받아들여 기대효과를 바꿨어(4절).</li>
+<li><strong>열화상 판정과 의견 작성 (근거 중간).</strong> 별지 제9호에 &quot;적외선열화상 측정시 핫스팟&quot;, 변색, 접속부 발열 같은 눈으로 판정하는 항목이 있어 [S14]. 서식 자동 채움 앱은 이미 많은데, 사진을 보고 이 항목을 판정해 주는 제품은 못 찾았어 [S18] <strong><span class="tag">부재 근거</span></strong>.</li>
+<li><strong>썬텍 내부 업무 방식은 전부 <span class="tag">미확인</span></strong>. 지금 어떤 일지 시스템을 쓰는지, 한 달에 몇 건 쓰는지는 재직자에게 물어야 해.</li>
+</ol>
+<h2>2. 트랙 적합도와 심사 포인트</h2>
+<div class="tw" tabindex="0" role="region" aria-label="표"><table>
+<thead>
+<tr><th>선택지</th><th>썬텍 적합도</th><th>판단</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>A · 에너지 (신재생 결함진단 데이터 + 서빙)</strong></td><td>높음</td><td>참고 주제가 &quot;신재생 설비 정비 의사결정&quot;이고 서빙 <code>SV-e434a471</code>에 <code>/predict/solar</code>, <code>/predict/wind</code>가 있어 [S1][S3]. 대행 점검의 열화상 항목과 바로 연결돼.</td></tr>
+<tr><td>A · 소부장, A · 바이오</td><td>낮음</td><td>업종이 안 맞아.</td></tr>
+<tr><td>B · 자사 데이터</td><td>보조로</td><td>썬텍 점검기록표 양식 한 장만 있어도 참신성과 실현 가능성이 크게 올라가. 비식별·보안 승인 필요 [S1].</td></tr>
+<tr><td>자유 주제 (서류 반복 업무 자동화)</td><td>단독은 약함</td><td>출제서가 예시로 들었지만 [S1] 서식 자동화 앱이 이미 많고 [S18], 서빙 호출이 없으면 A 트랙 데이터 이점을 버려.</td></tr>
+</tbody>
+</table></div>
+<p>심사표(출제서 그대로) [S1]:</p>
+<div class="tw" tabindex="0" role="region" aria-label="표"><table>
+<thead>
+<tr><th>영역</th><th>항목</th><th>배점</th><th>우리가 챙길 것</th></tr>
+</thead>
+<tbody>
+<tr><td>문제 해결력 60</td><td>문제 정의</td><td>20</td><td>재직자 입으로 나오는 현장 애로와 기대효과</td></tr>
+<tr><td></td><td>해결 방안 타당성</td><td>25</td><td>결과물이 <strong>실제로 정상 작동</strong>해야 해</td></tr>
+<tr><td></td><td>참신성</td><td>15</td><td>운영진 예시와 다른 점을 첫 60초에 보여 주기</td></tr>
+<tr><td>현장 적용성 40</td><td>접근성</td><td>15</td><td>비전문가 사용, 배포 URL로 누구나 확인</td></tr>
+<tr><td></td><td>실현 가능성</td><td>15</td><td>비용·기간·데이터가 현실적, 다른 업체로 확산</td></tr>
+<tr><td></td><td>발표·협업</td><td>10</td><td>재직자·학생 협업</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>채점은 항목별 5등급(100/80/60/40/20%)이야. 감점은 배포 미완료 -2, 시연 실패로 영상 대체 -1, 11:50 이후 제출 -1이고, 사전 완성품을 내면 시상에서 빠져 [S1].</li>
+<li>13팀 39명, 시상 4팀 총 350만 원 [S2]. 3개 분야라 에너지를 고르는 팀이 여럿일 가능성이 커 <strong><span class="tag">추론</span></strong>. 다른 팀 채널은 11/5부터 비공개라 확인할 길은 없어 [S4].</li>
+<li>플랫폼 제약 [S3]: AgentStream 에이전트는 RAG, SQL, 시각화 세 종류뿐이고 이미지를 받는 에이전트가 없어. 그래서 사진은 우리 백엔드가 AIStream 서빙으로 보내야 해. 브라우저에서 서빙을 직접 부르는 건 막혀 있고, 60분 동안 호출이 없으면 서빙이 일시정지돼.</li>
+<li>데이터 규칙: 자사 데이터와 제공 데이터만 쓰고 공공데이터 같은 외부 데이터는 새로 수집·활용할 수 없어 [S1]. 그런데 안내자료집 목적에는 &quot;공공데이터와 참가자 역량을 바탕으로&quot;라고 적혀 있고 [S2], AgentStream 실습은 HACCP 고시를 RAG에 올렸어 [S3]. <strong>법령·고시를 지식베이스에 넣어도 되는지는 회색지대라 운영진 확인이 필요해.</strong></li>
+</ul>
+<p>비슷한 대회에서 상 받은 작품의 공통점 <strong><span class="tag">휴리스틱, 해커톤 심사 증거로는 약함</span></strong> [S22][S23][S24][S25]:</p>
+<ul>
+<li>진단·탐지 결과에 LLM 에이전트를 붙여 조치 가이드와 보고서까지 만들었어.</li>
+<li>절감 시간이나 금액을 숫자로 보여 줬어.</li>
+<li>라이브로 시연했어.</li>
+<li>가장 가까운 선례는 KDT 해커톤 8회 대상 '띠몬'이야. 에이전트가 안전점검 기록을 교차 확인하고 법정 서식을 자동 작성해 [S25]. 우리 방향이 수상 패턴과 맞는다는 근거인 동시에, &quot;서식만 채우면 이미 본 아이디어&quot;라는 경고이기도 해.</li>
+</ul>
+<h2>3. 주제 후보 (순위순)</h2>
+<p>데이터 사실 (내가 스크립트로 직접 확인) [S29]:</p>
+<ul>
+<li><code>data/Sample</code>은 jpg 94장 + json 94개, 짝이 다 맞아. 태양광 19장(정상 16, 결함 3), 풍력 75장이야 [S29].</li>
+<li>태양광 결함 3장의 핫스팟 26개는 <strong>전부 심각도 3</strong>이고 크기는 6~190픽셀로 아주 작아 [S29].</li>
+<li>AI Hub 전체 데이터에서도 심각도는 결함 종류로 정해져. 종류별 장수를 등급별로 더하면 공개된 S1~S4 수가 정확히 나와. 태양광 결함은 핫스팟 한 종류뿐이고 3,435장 전부 S3야 [S5][S29].</li>
+<li>태양광 JPG 19장 모두에 640x512 16비트 열화상 원시값이 들어 있어. APP3 세그먼트 크기 655,360바이트가 640x512x2와 같아 [S29]. 그런데 원시값 차이만으로는 정상 사진과 깔끔하게 안 갈려서, <strong>섭씨 온도차(ΔT) 계산은 DJI SDK가 필요하고 <span class="tag">미확인</span></strong> 이야.</li>
+<li>서빙 입출력 형식은 문서 어디에도 없어. #해커톤-qna에 같은 질문이 11/5에 올라왔는데 답이 없어 [S4]. 심각도나 박스를 돌려준다고 가정하면 안 돼 <strong><span class="tag">미확인</span></strong>.</li>
+</ul>
+<figure class="fig"><svg viewBox="0 0 640 230" role="img" aria-label="로컬 샘플 구성: 풍력 75장, 태양광 정상 16장, 태양광 결함 3장. 태양광 결함 핫스팟 26개는 모두 심각도 3"><title>로컬 샘플 구성</title>
+<g font-size="14" fill="currentColor"><text x="0" y="20" font-weight="700">data/Sample 이미지 수 (스크립트 집계, V1)</text>
+<text x="0" y="62">풍력 블레이드</text><rect x="150" y="46" width="420" height="24" class="b1"/><text x="578" y="63">75장</text>
+<text x="0" y="104">태양광 정상</text><rect x="150" y="88" width="89.6" height="24" class="b2"/><text x="247.6" y="105">16장</text>
+<text x="0" y="146">태양광 결함</text><rect x="150" y="130" width="16.799999999999997" height="24" class="b3"/><text x="174.8" y="147">3장 (핫스팟 26개, 전부 심각도 3)</text>
+<line x1="150" y1="170" x2="570" y2="170" class="ax"/><text x="150" y="190" font-size="12">0</text><text x="290" y="190" font-size="12">25</text><text x="430" y="190" font-size="12">50</text><text x="570" y="190" font-size="12">75</text><text x="590" y="210" font-size="12">장</text></g></svg>
+<figcaption>그림 1. 로컬 샘플 구성. 태양광 결함 사진이 3장뿐이고 심각도가 한 값이라, 우선순위는 핫스팟 수·면적·몰림으로 따로 매겨야 해. 출처: V1.</figcaption></figure>
+<figure class="fig"><svg viewBox="0 0 660 120" role="img" aria-label="1위 흐름: 점검 사진 묶음, 서빙 판정, 규칙표 우선순위, 판정과 의견 초안, 점검자 확인 후 저장"><title>1위 주제 흐름</title>
+<g font-size="13" fill="currentColor"><rect x="2" y="30" width="118" height="54" rx="8" class="box"/><text x="61" y="62" text-anchor="middle">점검 사진 묶음</text><path d="M122 57 l8 0" class="ar"/><rect x="134" y="30" width="118" height="54" rx="8" class="box"/><text x="193" y="62" text-anchor="middle">/predict/solar 판정</text><path d="M254 57 l8 0" class="ar"/><rect x="266" y="30" width="118" height="54" rx="8" class="box"/><text x="325" y="62" text-anchor="middle">규칙표 우선순위</text><path d="M386 57 l8 0" class="ar"/><rect x="398" y="30" width="118" height="54" rx="8" class="box"/><text x="457" y="62" text-anchor="middle">별지9 판정·의견 초안</text><path d="M518 57 l8 0" class="ar"/><rect x="530" y="30" width="118" height="54" rx="8" class="box"/><text x="589" y="62" text-anchor="middle">점검자 확인·저장</text></g></svg>
+<figcaption>그림 2. 1위 주제의 처리 흐름. 숫자는 규칙표가 만들고, LLM은 판정 JSON을 보고 문장만 써.</figcaption></figure><h3>1위. 태양광 월차 점검 보고 에이전트</h3>
+<ul>
+<li><strong>썬텍 문제</strong>: 대행 점검자가 현장마다 매달 점검표를 쓰고 4년 보관해야 해 [S14]. 열화상 핫스팟 같은 판정 항목은 사람이 사진을 보고 채워. 기록 누락은 과태료 리스크야.</li>
+<li><strong>입력</strong>: 한 현장의 한 달 점검 열화상 묶음. 발전사업자나 드론 업체가 보낸 사진이어도 돼서 썬텍이 드론을 갖고 있는지와 상관없어.</li>
+<li><strong>처리</strong>:
+<ol>
+<li>백엔드가 사진마다 <code>/predict/solar</code>를 불러 핫스팟 사진을 골라내.</li>
+<li>우선순위는 우리 규칙표로 매겨. 사진당 핫스팟 수, 면적, 몰림 정도를 쓰고, ΔT는 계산되면 넣는 선택 칸이야. 서빙 심각도는 태양광이 전부 3이라 못 써 [S5].</li>
+<li>IEC TS 62446-3은 결함 유형별 기준표(부록 C)로 등급을 매겨. 예를 들어 단일 셀 과열은 1,000 W/m² 기준 ΔT 10~40K면 CoA 2, 40K 초과면 CoA 3이야 [S19]. &quot;ΔT 하나로 자른다&quot;고 말하면 틀려.</li>
+<li>손실(원)은 따로 계산해. ΔT와 출력 손실 상관은 약하다는 연구가 있어서 [S20], 손실은 &quot;결함 유형 × 영향 회로 수 × 가정 계수 × 사용자가 넣은 단가&quot;로 계산하고 &quot;추정&quot;이라고 표시해. 모듈 정격 440W는 라벨의 모델명(HiS-S440)에서 가져오니까 제공 데이터만으로 해결돼.</li>
+</ol>
+</li>
+<li><strong>출력</strong>: 별지 제9호 핫스팟 항목 ○/× 초안, 직무고시 제5조 판정(부적합/안전확보 조언) 초안, 종합의견 문장, 발전사업자용 한 장 요약. LLM(qwen3.5-122b)은 구조화된 판정 JSON만 보고 문장을 써. 숫자는 규칙표가 만들고 LLM은 숫자를 만들지 않아 [S26][S27].</li>
+<li><strong>사람 확인(HITL)</strong>: 점검자가 화면에서 판정을 확인·수정한 뒤 저장해. IEC 원문도 &quot;열화상만으로 확정 못 할 때가 있다&quot;고 해서 [S19], 보고서는 진단 확정이 아니라 현장 확인 지시서로 써.</li>
+<li><strong>차별점 (skeptic 2라운드 반영)</strong>: 사진 한 장이 아니라 현장 점검 한 번 단위, HITL 화면, 법정 서식 항목에 바로 들어가는 판정 문구, 시연 중 실측한 전후 소요 시간.</li>
+<li><strong>도구</strong>: AIStream(제공 서빙), AgentStream(LLM, 선택적으로 RAG), DevStream(개발 서버 배포).</li>
+<li><strong>이틀 안에 가능한가</strong>: 중상 <span class="tag">추론</span>. 모델 학습은 안 해. 위험 요소는 서빙 입출력 미지수, 배포 경로 문제, 범위 과다야.</li>
+<li><strong>점수 예상 <span class="tag">추론</span></strong>: 문제 정의는 재직자 발언이 붙으면 상위 등급이야. 타당성은 라이브가 돌면 상. 참신성은 운영진 예시와 같은 체인이라 중상 정도로 보는 게 정직해 <span class="tag">추론</span>. 접근성은 사진 묶음 업로드 + 확인 버튼이라 상. 실현 가능성은 다른 대행업체도 그대로 쓸 수 있어서 중상.</li>
+<li><strong>서빙 형식이 어떻게 나와도 흐름이 유지되게</strong>: 응답이 이미지 단위 라벨만이든, 박스든, 마스크든 흐름이 같아야 해. 서빙은 &quot;판정 엔진&quot;으로만 쓰고 우선순위는 우리 로직으로 둬. 라벨만 오면 위치 표시는 열화상 원시값 임계값으로 그려 (skeptic 제안).</li>
+<li><strong>원시값 상대 ΔT는 시간 제한</strong>: 원시값에서 &quot;핫스팟 최댓값 − 패널 중앙값&quot;은 변환 없이도 순위용으로 쓸 수 있어. 두 시간 안에 되면 평평한 우선순위 문제를 이걸로 풀고, 안 되면 개수·면적 순위로 돌아가. 섭씨는 변환 결과가 그럴듯할 때만 띄워 [S29].</li>
+<li><strong>화면은 한 줄 흐름</strong>: 현장 선택 → 사진 업로드 → 핫스팟 사진 표시 → 우선순위 → 기록표·보고서 초안 → 확인·수정 → 저장. 탭 두 개로 나누면 &quot;반쪽 두 개&quot;로 보여. 서식은 한 종류만.</li>
+<li><strong>리스크</strong>: 썬텍이 열화상 점검과 무관하면 문제 정의가 약해져. 별지 제9호 서식을 결과물에 옮겨 쓰는 게 외부 데이터 회색지대일 수 있어. 결함 3장이 다 잡혀야 시연이 돼.</li>
+</ul>
+<h3>2위. 점검 라운드 + 대행 일정·용량 플래너</h3>
+<ul>
+<li>더미 현장 목록과 점검 주기, AI 결함 결과를 묶어 월간 방문 일정과 우선순위, 기록 초안을 내. 고시 제4조 최소 방문 간격과 별표 9 가중치 한도를 지키는지 검사해 [S14][S17].</li>
+<li>회사 단위 고통(1인당 담당량)을 직접 건드리지만 규정 문서 의존이 커서 외부 데이터 리스크가 더 커. 1위의 확장 탭으로 추천해.</li>
+</ul>
+<h3>3위. 전기안전 서류 자동화</h3>
+<ul>
+<li>체크 결과나 메모를 넣으면 서식에 맞춘 점검일지를 써 주는 AgentStream 챗봇.</li>
+<li>협회 무료 시스템과 1만 원대 앱이 이미 직무고시 서식을 자동으로 채워 [S18]. 서빙 호출이 없으면 A 트랙 데이터 이점도 잃어. 1차 조사 2위에서 내려왔어.</li>
+</ul>
+<h3>4위. 풍력+태양광 통합 O&amp;M 대시보드</h3>
+<ul>
+<li>풍력은 9종 결함, 심각도 1~4가 있어 우선순위 시연이 풍성해 [S29]. 그러나 대형 풍력은 대행사업자 범위(300kW 미만) 밖이라 썬텍 이야기와 안 맞아 [S14]. 1위의 두 번째 탭으로만 써.</li>
+</ul>
+<h3>5위. 발전 손실 추정 대시보드</h3>
+<ul>
+<li>&quot;지금 고치면 얼마 아낀다&quot;는 설득력이 좋지만 계수가 전부 가정이라 단독 주제로는 약해. 1위에 &quot;추정(가정 명시)&quot; 칸으로 넣어.</li>
+</ul>
+<p>(1차 조사의 4위 &quot;신입 교육용 결함 퀴즈&quot;는 비용 문제와 멀어서 뺐어.)</p>
+<h2>4. 최종 추천과 2일 계획</h2>
+<p><strong>1위 &quot;태양광 월차 점검 보고 에이전트&quot;로 가자.</strong> 이유는 넷이야.</p>
+<ul>
+<li>제공 데이터(태양광 열화상)와 썬텍 본업(대행 점검·법정 기록)이 별지 제9호 한 칸에서 만나. 둘 다 근거가 있어 [S14][S29].</li>
+<li>운영진 예시 체인을 쓰되 단위를 현장 점검 한 번으로 바꾸고 법정 서식에 연결해서 다른 에너지 팀과 차별돼.</li>
+<li>모델 학습이 없어서 이틀 안에 돌아가는 데모를 만들 수 있어.</li>
+<li>기대효과를 &quot;현장 더 받기&quot;가 아니라 정직하게 잡아. 기록 누락·오기 감소(과태료 리스크), 방문당 작성 시간 단축(시연에서 직접 잰 값), 소규모 발전소 대상 열화상 판정 부가 서비스 [S15][S17].</li>
+</ul>
+<p><strong>11/7 09:00 게이트 (재직자 인터뷰 결과로 하나 고르기)</strong></p>
+<ul>
+<li>태양광 수용가가 많고 열화상을 쓴다 → 1위 그대로.</li>
+<li>태양광 수용가는 많은데 열화상은 안 쓴다 → 1위 유지. 입력을 &quot;발전사업자·드론 업체가 준 영상&quot;으로 설명하고, 기대효과를 &quot;모듈 진단 신규 서비스&quot;로 잡아.</li>
+<li>태양광 수용가가 적다 → 재직자 서식 기반 점검기록 자동화로 가고, <code>/predict/solar</code>는 &quot;열화상이 있으면&quot; 단계로 붙여. 참신성은 내려가지만 문제 정의와 실현 가능성에서 점수를 만회해.</li>
+</ul>
+<p><strong>MVP와 컷 리스트</strong></p>
+<ul>
+<li>MVP: 사진 묶음 업로드 → 서빙 판정 → 우선순위 표 → 별지 제9호 항목·의견 초안 → 점검자 확인 → 배포 URL.</li>
+<li>스트레치(시간 남으면): 풍력 탭, 손실(원) 추정, RAG 챗봇, 일정 플래너.</li>
+<li>11/6 밤에는 코드 금지야. 사전 완성품은 시상 제외라 기획 문서까지만 [S1].</li>
+</ul>
+<p><strong>11/7(토)</strong> [S2]</p>
+<ul>
+<li>09:00~10:00: 서빙 <code>/docs</code>로 입출력 확정. 19장 전부 사전 추론해서 시연 세트 고르기. 개발 서버에 Hello 페이지를 외부 주소로 먼저 띄워 하얀 화면 문제부터 해결. qna 질문 올리기.</li>
+<li>스프린트 1(~12:00): 재직자와 점검 흐름 정리, 서식 항목 확정. 백엔드에서 <code>/predict/solar</code> 호출 성공.</li>
+<li>스프린트 2(13:00~15:45): 묶음 업로드, 판정, 우선순위 표, 박스 확대 표시.</li>
+<li>스프린트 3(15:45~18:00): AgentStream 모델 → (필요하면) 지식베이스 → 에이전트 → 챗봇 순서로 만들고 API 연동. 판정 JSON → 의견 초안.</li>
+<li>스프린트 4(19:00~20:30): HITL 확인 화면, 배포, 20:30 중간점검에서 URL 시연. 밤에는 스트레치 하나만.</li>
+</ul>
+<p><strong>11/8(일)</strong></p>
+<ul>
+<li>09:10~10:30: 버그 수정, 캐시 폴백(서빙 지연 대비), 시연 직전 <code>/health</code> 깨우기 루틴. 발표 순번이 늦을 수 있어서 필수야 [S3].</li>
+<li>10:30~11:30: 발표 PDF와 PPT, GitHub 정리, 아키텍처 그림(출제서가 요구) [S1].</li>
+<li>11:30까지 제출(마감 11:50). 대회 뒤 자원이 회수되니 백업해 [S1].</li>
+</ul>
+<p><strong>역할</strong>: 재직자는 문제 정의, 현장 서식, 판정 기준 확인, 발표 앞부분. 학생 둘은 백엔드·화면과 AgentStream 연동. 이렇게 나눠야 협업 점수 이야기가 자연스러워 [S1].</p>
+<h2>5. 운영진과 썬텍에 물어볼 것</h2>
+<p>질문 근거는 2절과 6절의 미해결 클레임이야 [S1][S4].</p>
+<p>#해커톤-qna (운영진):</p>
+<ol>
+<li>신재생 서빙 <code>/predict/solar</code>, <code>/predict/wind</code>의 입력 형식과 응답 필드(클래스, 박스, 신뢰도, 설명문)가 뭐야? (11/5 같은 질문이 미답변이야)</li>
+<li>공개 법령·고시(예: 전기안전관리자 직무고시 서식)를 지식베이스에 넣거나 결과물 양식으로 쓰면 외부 데이터에 해당해? 안내자료집 목적의 &quot;공공데이터와 참가자 역량을 바탕으로&quot; 문구를 같이 인용해 물어봐.</li>
+<li>AI Hub에서 우리가 받은 신재생 샘플(dataSetSn=71923)이 제공 데이터로 인정돼? 당일 워크스페이스에 따로 주는 샘플이 있어?</li>
+<li>서빙 자동 일시정지를 시연 시간에 끌 수 있어?</li>
+<li>DevStream은 개발 서버를 말하는 게 맞아?</li>
+</ol>
+<p>썬텍 재직자:</p>
+<ol>
+<li>드론 열화상 점검을 직접 해, 아니면 고객이나 드론 업체 사진을 받아?</li>
+<li>태양광 대행 현장이 몇 곳이고 매출 비중은 어느 정도야?</li>
+<li>지금 점검기록은 어떤 시스템이나 양식으로, 한 달에 몇 건 써? 한 건에 몇 분 걸려?</li>
+<li>비식별한 점검기록표 양식 한 장을 가져올 수 있어? (자사 데이터로 쓰면 참신성이 크게 올라가)</li>
+<li>1인당 담당량 한도에 실제로 걸려 있어?</li>
+</ol>
+<h2>6. 클레임과 근거</h2>
+<p>게이트 기준: 위험도 높은 주장은 독립 출처 두 곳 이상, 독립 관측 그룹 두 개 이상, 반증 검색 한 번, 1차 자료가 있어야 통과야. 법령 원문 한 곳만 있는 경우는 1차 자료라서 단일 출처 예외로 기록했어.</p>
+<div class="tw" tabindex="0" role="region" aria-label="표"><table>
+<thead>
+<tr><th>ID</th><th>주장</th><th>상태</th><th>근거</th></tr>
+</thead>
+<tbody>
+<tr><td>C1</td><td>에너지 참고 주제는 &quot;신재생 설비 정비 의사결정&quot;, 교육자료 예시는 &quot;설비사진 → 결함진단·점검리포트&quot;</td><td>지지</td><td>S1, S3</td></tr>
+<tr><td>C2</td><td>외부 데이터 신규 수집·활용 금지, 법령을 지식베이스에 넣는 문제는 명시 없음</td><td>지지 (문서 간 상충 기록)</td><td>S1, S2, S3</td></tr>
+<tr><td>C3</td><td>배점 20/25/15/15/15/10, 타당성에 &quot;정상 작동&quot; 포함</td><td>지지</td><td>S1</td></tr>
+<tr><td>C4</td><td>샘플 94쌍, 태양광 결함 3장·핫스팟 26개 전부 심각도 3</td><td>지지 (스크립트)</td><td>S29</td></tr>
+<tr><td>C5</td><td>심각도는 결함 종류로 결정, 태양광 핫스팟 전부 S3</td><td>지지 (계산 재현)</td><td>S5, S29</td></tr>
+<tr><td>C6</td><td>태양광 JPG에 16비트 열화상 원시값 포함</td><td>지지 (스크립트, 1차 보고 정정)</td><td>S29</td></tr>
+<tr><td>C7</td><td>점검기록 작성·4년 보존 의무, 미작성·허위 과태료</td><td>지지</td><td>S14, S15</td></tr>
+<tr><td>C8</td><td>별지 제9호에 &quot;적외선열화상 측정시 핫스팟&quot; 항목</td><td>지지 (법령 원문 단일 출처 예외)</td><td>S14</td></tr>
+<tr><td>C9</td><td>서식 자동화 앱은 많고 사진 판정 제품은 못 찾음</td><td>지지 (부재 근거)</td><td>S18</td></tr>
+<tr><td>C10</td><td>썬텍 업종은 전기안전관리대행, 공공계약 전부 자가용 설비 대행</td><td>지지</td><td>S10, S11</td></tr>
+<tr><td>C11</td><td>직원 약 12~13명</td><td>부분</td><td>S8, S9</td></tr>
+<tr><td>C12</td><td>수상작 공통점: 진단 + LLM 에이전트 + 정량 효과 + 라이브 시연</td><td>지지 (휴리스틱으로만 사용)</td><td>S22~S25</td></tr>
+<tr><td>C13</td><td>IEC 62446-3은 결함 유형별 ΔT 기준을 둠</td><td>지지 (원문, A조 2차 자료 반박)</td><td>S19</td></tr>
+<tr><td>C14</td><td>ΔT와 출력 손실 상관은 약함</td><td>지지</td><td>S20</td></tr>
+<tr><td>C21</td><td>1차 조사의 체인은 운영진 예시와 같아 그 자체로는 참신하지 않음</td><td>지지</td><td>S3</td></tr>
+<tr><td>C22</td><td>1인당 한도 때문에 &quot;시간 절감 = 매출&quot;은 약함</td><td>부분</td><td>S17</td></tr>
+</tbody>
+</table></div>
+<p>미해결·반박된 주장 (보고서에서 단정하지 않았어):</p>
+<ul>
+<li>C15 썬텍이 드론 열화상 점검을 한다: <strong>미해결</strong>. 근거 없음.</li>
+<li>C18 서빙이 심각도·박스를 돌려준다: <strong>미해결</strong>. 11/7 <code>/docs</code>로 확인해야 해.</li>
+<li>C20 원시값으로 핫스팟 ΔT(°C)를 바로 계산할 수 있다: <strong>미해결</strong>. 원시값 차이가 정상 사진과 겹치고, SDK 변환은 안 돌려 봤어 [S29].</li>
+<li>C19 분석·보고 87분 → 19분 단축 사례: <strong>부분</strong>. 논문 원문이 아니라 기사로만 확인했어 [S28].</li>
+<li>C16 1차 조사의 직원 수 추정: <strong>반박됨</strong> [S8][S9].</li>
+<li>C17 남부발전 모델 정확도 80%가 태양광 수치: <strong>반박됨</strong>. 풍력 결함 진단 수치야 [S21].</li>
+</ul>
+<h2>7. 방법과 한계</h2>
+<ul>
+<li><strong>팀 구성</strong>: 축마다 한 명씩 일곱 명(썬텍 기업, 대회 문서, 데이터·서빙, Slack, 수상 사례, 태양광 O&amp;M AI, 전기안전 법규)과 반론 전담 skeptic 한 명. <code>team_create</code>가 처음에 안 보여서 같은 축의 task 레인 8개도 띄웠고, 그중 5개(대회 문서, 데이터, 수상 사례, 태양광 AI, 법규)는 독립 관측 B조로 남기고 3개는 취소했어.</li>
+<li><strong>웨이브</strong>: 1차 수집, 2차 확장(심각도 정의, 열화상 원시값 검증, IEC 원문), 토론 2라운드. skeptic은 1차 조사의 1위가 운영진 예시와 같다는 점, 썬텍 본업 전제, 평평한 우선순위, 경제 논리를 공격했고, 전면 피벗 대신 지금의 하이브리드를 권했어. 그 판정을 그대로 반영했어.</li>
+<li><strong>직접 검증</strong>: 샘플 개수·심각도 집계, APP3 원시값 파싱, 원시값 핫스팟 대비, AI Hub 심각도 합산을 스크립트로 돌렸어 [S29].</li>
+<li><strong>Slack</strong>: 읽기 전용으로 세 채널을 끝까지 읽었고 아무것도 쓰지 않았어. 공지 스레드에 API 키처럼 보이는 문자열이 있었는데 이 보고서와 저장소에 옮기지 않았어.</li>
+<li><strong>못 한 것</strong>: AI Hub 매뉴얼(심각도 공식 정의)은 로그인이 필요해서 못 열었어. KIPRIS 직접 검색, 썬텍 등기부, 서빙 실제 호출(대회 전이라 안 함), DJI SDK 온도 변환도 안 했어. 검색 엔진 속도 제한 때문에 일부 수상 사례가 빠졌을 수 있어.</li>
+<li><strong>자동 사실 대조 게이트</strong>: ulw-research의 숫자 자리표시자 방식(fact ledger) 대신, 숫자마다 출처 번호를 붙이고 클레임 그래프로 묶는 방식으로 했어. 이유와 게이트 결과는 부록에 적었어.</li>
+</ul>
+<h2>출처</h2>
+<p>접근일은 모두 2026-11-06이야.</p>
+<ul>
+<li>S1. AX혁신챌린지 해커톤 문제출제서 (대회 배포 PDF, docs/slack/) - 트랙, 참고 주제, 심사표, 데이터 규칙</li>
+<li>S2. AX혁신챌린지 참가자안내자료집 (대회 배포 PDF) - 일정, 팀 수, 시상, 대회 목적</li>
+<li>S3. AIStream·AgentStream·오픈플랫폼 사전 교육 자료 (대회 배포 PDF 3종) - 서빙 경로, 예시 서비스, 에이전트 종류, 일시정지</li>
+<li>S4. 대회 Slack #공지사항, #해커톤-qna, #2팀-썬텍 (읽기 전용) - 서빙 입출력 질문 미답변, 채널 비공개 전환</li>
+<li>S5. AI Hub 신재생 에너지 발전 설비 결함진단 멀티모달 데이터 <a href="https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&amp;topMenu=100&amp;dataSetSn=71923">https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&amp;topMenu=100&amp;dataSetSn=71923</a></li>
+<li>S8. 비즈당 <a href="https://bizdang.com/biz/2278702206">https://bizdang.com/biz/2278702206</a></li>
+<li>S9. 머니핀 <a href="https://moneypin.biz/bizno/detail/2278702206/">https://moneypin.biz/bizno/detail/2278702206/</a> , 사람인 기업정보</li>
+<li>S10. 조달장부 <a href="https://jodal.craftspace.co.kr/supplier/2278702206">https://jodal.craftspace.co.kr/supplier/2278702206</a> , kjebi <a href="https://www.kjebi.com/search/smart/bidder/detail/2278702206">https://www.kjebi.com/search/smart/bidder/detail/2278702206</a> , <a href="https://g2b.dima.tools/company/4108692924">https://g2b.dima.tools/company/4108692924</a></li>
+<li>S11. 중소벤처기업부 벤처기업명단 <a href="https://www.data.go.kr/data/15084581/fileData.do">https://www.data.go.kr/data/15084581/fileData.do</a></li>
+<li>S12. 보성군 태양광 발전 설치현황 <a href="https://www.data.go.kr/data/15034054/fileData.do">https://www.data.go.kr/data/15034054/fileData.do</a></li>
+<li>S13. 연합뉴스 2018-11-08 <a href="https://www.yna.co.kr/view/AKR20181108131400054">https://www.yna.co.kr/view/AKR20181108131400054</a></li>
+<li>S14. 전기안전관리자의 직무에 관한 고시 (제4조, 제5조, 제6조, 별지 제9호) https://www.law.go.kr/행정규칙/전기안전관리자의직무에관한고시</li>
+<li>S15. 전기안전관리법·시행규칙 (제36조, 법 제52조) https://www.law.go.kr/법령/전기안전관리법시행규칙 , https://www.law.go.kr/법령/전기안전관리법</li>
+<li>S16. 산업부 실태조사 보도자료 <a href="https://www.energydaily.co.kr/news/articleView.html?idxno=134327">https://www.energydaily.co.kr/news/articleView.html?idxno=134327</a></li>
+<li>S17. 전기안전관리법 시행규칙 별표 9, 제26조 <a href="https://law.go.kr/LSW/flDownload.do?flSeq=158557381">https://law.go.kr/LSW/flDownload.do?flSeq=158557381</a></li>
+<li>S18. 전기신문 <a href="https://www.electimes.com/news/articleView.html?idxno=353887">https://www.electimes.com/news/articleView.html?idxno=353887</a> , <a href="https://www.safebz.co.kr/">https://www.safebz.co.kr/</a> , <a href="https://kesafe.co.kr/">https://kesafe.co.kr/</a> , <a href="https://elecin.co.kr/">https://elecin.co.kr/</a> , <a href="https://hsesafe.kr/">https://hsesafe.kr/</a></li>
+<li>S19. IEC TS 62446-3:2017 <a href="https://webstore.iec.ch/en/publication/28628">https://webstore.iec.ch/en/publication/28628</a> (부록 C와 본문 표를 라이선스 사본으로 확인)</li>
+<li>S20. Skomedal 외, Solar Energy 2020 <a href="https://doi.org/10.1016/j.solener.2020.10.065">https://doi.org/10.1016/j.solener.2020.10.065</a> , IEA PVPS T13-10</li>
+<li>S21. 에너지데일리 남부발전 드론 AI <a href="https://www.energydaily.co.kr/news/articleView.html?idxno=164963">https://www.energydaily.co.kr/news/articleView.html?idxno=164963</a></li>
+<li>S22. LG디스플레이 AX 해커톤 <a href="https://www.hellot.net/news/article.html?no=108043">https://www.hellot.net/news/article.html?no=108043</a></li>
+<li>S23. SKT AX 챌린지 <a href="https://news.sktelecom.com/225332">https://news.sktelecom.com/225332</a> , DACON <a href="https://dacon.io/competitions/official/236655/leaderboard">https://dacon.io/competitions/official/236655/leaderboard</a></li>
+<li>S24. M.AX CEO 해커톤 <a href="https://www.techfocus.kr/rd_note/36">https://www.techfocus.kr/rd_note/36</a> , 중기부 피칭데이 <a href="https://www.asiae.co.kr/en/article/2025121017222811337">https://www.asiae.co.kr/en/article/2025121017222811337</a></li>
+<li>S25. KDT 해커톤 <a href="https://newspim.com/news/view/20260904000402">https://newspim.com/news/view/20260904000402</a> , 한전KDN <a href="https://ns.kdn.com/board.kdn?act=view&amp;bid=0018&amp;list_no=24108&amp;mid=a10111010000">https://ns.kdn.com/board.kdn?act=view&amp;bid=0018&amp;list_no=24108&amp;mid=a10111010000</a></li>
+<li>S26. Raptor Maps 손실 계산 <a href="https://pages.raptormaps.com/raptor-maps-knowledge-hub/calculating-impact-of-anomalies-power-factors">https://pages.raptormaps.com/raptor-maps-knowledge-hub/calculating-impact-of-anomalies-power-factors</a></li>
+<li>S27. Sitemark 손실 추정 <a href="https://support.sitemark.com/en/articles/5664646">https://support.sitemark.com/en/articles/5664646</a> , pv magazine 2026-06 <a href="https://www.pv-magazine.com/2026/06/01/ai-platforms-split-on-how-far-to-push-solar-om-automation/">https://www.pv-magazine.com/2026/06/01/ai-platforms-split-on-how-far-to-push-solar-om-automation/</a></li>
+<li>S28. Measurement 2026 <a href="https://doi.org/10.1016/j.measurement.2026.122851">https://doi.org/10.1016/j.measurement.2026.122851</a> (aitimes 기사 경유)</li>
+<li>S29. 직접 검증 스크립트 결과 (세션 폴더 verify-sample.md)</li>
+<li>S30. 세션 저널 (brief.md, debate-log.md, observation-manifest.md, claim-graph.md)</li>
+</ul>
+</main></body></html>
